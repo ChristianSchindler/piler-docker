@@ -99,7 +99,7 @@ fi
 # Path-Settings
 installPth=`pwd`
 configPth="$installPth/config"
-etcPth="./data/etc/"
+etcPth="./data/etc"
 cronPth="./data/crontabs"
 buildPth="$installPth/build"
 

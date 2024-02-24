@@ -4,6 +4,7 @@ services:
   mysql:
     image: mariadb:${MARIA_DB_VERSION}
     container_name: mysql_piler
+    user: 0:0
     restart: unless-stopped
     cap_drop:
       - ALL
@@ -38,6 +39,7 @@ services:
   piler:
     image: simatec/piler:${PILER_VERSION}
     container_name: piler
+    user: 0:0
     restart: unless-stopped
     expose:
       - "80"
