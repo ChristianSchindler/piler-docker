@@ -46,7 +46,7 @@ services:
       start_period: "15s"
       retries: 3
     volumes:
-      - db_data:/var/lib/mysql
+      - ./data/mysql:/var/lib/mysql
 
   memcached:
     image: memcached:latest
@@ -78,12 +78,12 @@ services:
     ports:
       - "25:25"
     volumes:
-      - piler_etc:/etc/piler
-      - piler_var_store:/var/piler/store
-      - piler_var_manticore:/var/piler/manticore
-      - piler_var_imap:/var/piler/imap
-      - piler_var_stat:/var/piler/stat
-      - piler_cron:/var/spool/cron/crontabs
+      - ./data/etc:/etc/piler:Z
+      - ./data/store:/var/piler/store:Z
+      - ./data/manticore:/var/piler/manticore:Z
+      - ./data/imap:/var/piler/imap:Z
+      - ./data/stat:/var/piler/stat:Z
+      - ./data/crontabs:/var/spool/cron/crontabs:Z
       - /etc/localtime:/etc/localtime:ro
     healthcheck:
       test: curl -s smtp://localhost/
@@ -106,12 +106,3 @@ networks:
   default:
     external:
       name: nginx-proxy
-
-volumes:
-  db_data:
-  piler_etc:
-  piler_var_store:
-  piler_var_manticore:
-  piler_var_imap:
-  piler_var_stat:
-  piler_cron:
